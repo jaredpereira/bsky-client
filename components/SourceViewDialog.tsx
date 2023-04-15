@@ -6,8 +6,8 @@ export function SourceViewDialog({ source }: { source: object }) {
     <Dialog.Root>
       <Dialog.Trigger>src</Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed top-0 left-0 right-0 bottom-0 grid place-items-center px-4">
-          <Dialog.Content className="bg-white border w-full">
+        <Dialog.Overlay className="fixed top-0 left-0 right-0 bottom-0 grid place-items-center px-4 py-4">
+          <Dialog.Content className="bg-white border w-full h-full overflow-y-scroll">
             <pre className="whitespace-pre-wrap">
               {JSON.stringify(source, null, 2)}
             </pre>
