@@ -75,8 +75,10 @@ function ListEnd(props: { grow: () => void }) {
 }
 
 function FeedPost(props: FeedViewPost) {
+  let repostBy = props.reason?.by as { handle: string };
   return (
     <div key={props.post.cid} className="flex flex-col gap-0.5">
+      {repostBy && <div>reposted by {repostBy.handle}</div>}
       {props.reply?.parent && (
         <>
           {props.reply.parent.cid !== props.reply.root.cid && <div>root</div>}
