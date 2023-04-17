@@ -8,13 +8,13 @@ import {
   FeedViewPost,
   PostView,
 } from "@atproto/api/dist/client/types/app/bsky/feed/defs";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useAgent } from "./AgentProvider";
 import { SourceViewDialog } from "./SourceViewDialog";
 
 export function Feed(props: {
   initialValue: { feed: FeedViewPost[]; cursor?: string };
-  session: any;
 }) {
   let [data, setData] = useState(props.initialValue);
   let agent = useAgent();
@@ -74,7 +74,7 @@ function ListEnd(props: { grow: () => void }) {
   );
 }
 
-function FeedPost(props: FeedViewPost) {
+export function FeedPost(props: FeedViewPost) {
   let repostBy = props.reason?.by as { handle: string };
   return (
     <div key={props.post.cid} className="flex flex-col gap-0.5">
@@ -99,7 +99,9 @@ function Post(
     <div className="max-w-sm p-3 border flex-col gap-2">
       <div className="flex flex-row gap-2">
         <img className="w-8 h-8 rounded-full" src={props.author.avatar} />@
-        {props.author.handle}
+        <Link href={`/profile/${props.author.handle}`}>
+          {props.author.handle}
+        </Link>
         <SourceViewDialog source={props} />
       </div>
       <pre className="whitespace-pre-wrap break-words">{props.record.text}</pre>
